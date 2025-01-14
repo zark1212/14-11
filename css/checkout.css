@@ -1,0 +1,570 @@
+/* Reset e estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Estilos dos steps */
+.step {
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.step h2 {
+    color: #2f4eb5;
+    margin-bottom: 25px;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Formulário */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2f4eb5;
+}
+
+button {
+    background: #2f4eb5;
+    color: #fff;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #243c8c;
+}
+
+/* Resumo do pedido */
+.order-summary {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.order-summary h3 {
+    color: #2f4eb5;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.order-summary p {
+    margin: 10px 0;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Container do PIX */
+.qr-code-container {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.qr-code-container img {
+    max-width: 250px;
+    border: 2px solid #e1e1e1;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.pix-copy {
+    margin: 20px 0;
+}
+
+.pix-copy p {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.copy-button {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.copy-button input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #f8f9fa;
+}
+
+.copy-button button {
+    width: auto;
+    padding: 12px 20px;
+    background: #28a745;
+}
+
+.copy-button button:hover {
+    background: #218838;
+}
+
+/* Status do pagamento */
+.payment-status {
+    text-align: center;
+    margin-top: 25px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.payment-status p {
+    font-size: 16px;
+    color: #555;
+}
+
+#status {
+    font-weight: 600;
+    color: #f0ad4e;
+}
+
+#status.paid {
+    color: #28a745;
+}
+
+/* Footer */
+.footer {
+    background: #2f4eb5;
+    color: #fff;
+    padding: 40px 0 20px;
+    margin-top: 60px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.footer-section {
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 20px;
+    transition: opacity 0.3s;
+}
+
+.social-links a:hover {
+    opacity: 0.8;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .step {
+        padding: 20px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.step {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Loader para estados de carregamento */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #2f4eb5;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.logo-checkout {
+    width: 150px;
+    margin: 10px 0;
+}
+
+.checkout-steps {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    padding: 0 20px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #6c757d;
+}
+
+.step.active {
+    color: #2f4eb5;
+}
+
+.step i {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.checkout-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.checkout-summary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+.checkout-summary h2 {
+    color: #2f4eb5;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #6c757d;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+    font-weight: bold;
+    color: #2f4eb5;
+    font-size: 1.2rem;
+}
+
+.checkout-form {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.checkout-form h2 {
+    color: #2f4eb5;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #495057;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: #2f4eb5;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(47,78,181,0.25);
+}
+
+/* Estilos do PIX */
+.pix-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.qr-code-container {
+    text-align: center;
+    margin-bottom: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.qr-code-container h3 {
+    color: #2f4eb5;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+#qrcode {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    display: inline-block !important;
+}
+
+#qrcode img {
+    display: block;
+    margin: 0 auto;
+}
+
+.copy-button {
+    background-color: #52b52f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.copy-button:hover {
+    background-color: #449626;
+    transform: translateY(-1px);
+}
+
+.copy-button:active {
+    transform: translateY(0);
+}
+
+.copy-button i {
+    font-size: 1.1rem;
+}
+
+.pix-code-container {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.pix-code-container h3 {
+    color: #2f4eb5;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.pix-code {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #e9ecef;
+}
+
+.pix-code span {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #495057;
+    word-break: break-all;
+    flex: 1;
+}
+
+.pix-instructions {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.pix-instructions h3 {
+    color: #2f4eb5;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.pix-instructions ol {
+    padding-left: 20px;
+    color: #495057;
+}
+
+.pix-instructions li {
+    margin-bottom: 10px;
+}
+
+.pix-timer {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pix-timer p {
+    color: #495057;
+    margin-bottom: 5px;
+}
+
+#timer {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2f4eb5;
+}
+
+.pix-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+}
+
+.pix-info i {
+    font-size: 1.5rem;
+    color: #52b52f;
+}
+
+.pix-info p {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .checkout-content {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-summary {
+        order: -1;
+    }
+
+    .container-principal {
+        padding: 10px;
+    }
+
+    .qr-code {
+        width: 150px;
+        height: 150px;
+    }
+
+    .pix-code span {
+        font-size: 0.7rem;
+    }
+}
+
+/* Animações */
+.step {
+    transition: color 0.3s ease;
+}
+
+.form-control {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.adc-carrinho {
+    transition: background-color 0.3s ease;
+}
+
+.copy-button {
+    transition: background-color 0.3s ease;
+} 

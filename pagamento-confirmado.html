@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pedido Confirmado - Viva Sorte</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/rodape.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap-icons.min.css">
+    <script>
+      window.pixelId = "67591726b1d7e085d2700fc8";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+    <style>
+        .confirmation-container {
+            margin: 0 auto;
+            width: 700px;
+            max-width: 100%;
+            padding: 20px;
+        }
+
+        .confirmation-box {
+            background-color: #2f4eb5;
+            border-radius: 0.8rem;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0px 12px 16px -13px rgba(0, 0, 0, 0.47);
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .ticket-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 0.6rem;
+            margin: 20px 0;
+        }
+
+        .prize-box {
+            background-color: #52b52f;
+            padding: 25px;
+            border-radius: 0.6rem;
+            margin: 20px 0;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prize-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.4rem;
+        }
+
+        .button-voltar {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #52b52f;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.6rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            border: none;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-voltar:hover {
+            background-color: #0f8400;
+            color: white;
+            text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .tag-confirmado {
+            display: inline-block;
+            color: white;
+            font-size: 0.9rem;
+            background-color: #52b52f;
+            border-radius: 0.2rem;
+            padding: 0.4rem 0.8rem;
+            margin: 10px 0;
+            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.16);
+        }
+    </style>
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '8957407444350268');
+      fbq('track', 'PageView');
+
+      // Enviar evento de compra concluída
+      document.addEventListener('DOMContentLoaded', function() {
+        const orderData = {
+          content_type: 'product',
+          content_name: 'Cotas Viva Sorte',
+          contents: [{
+            id: 'main-raffle',
+            quantity: parseInt(localStorage.getItem('ticketQuantity') || '0'),
+            price: 1.99
+          }],
+          num_items: parseInt(localStorage.getItem('ticketQuantity') || '0'),
+          currency: 'BRL',
+          value: (parseInt(localStorage.getItem('ticketQuantity') || '0') * 1.99).toFixed(2)
+        };
+
+        // Enviar evento de compra para o Facebook
+        fbq('track', 'Purchase', orderData);
+
+        // Enviar evento com o token de servidor
+        fetch('https://graph.facebook.com/v18.0/8957407444350268/events', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            data: [{
+              event_name: 'Purchase',
+              event_time: Math.floor(Date.now() / 1000),
+              action_source: 'website',
+              user_data: {
+                client_ip_address: '{{client_ip_address}}',
+                client_user_agent: navigator.userAgent,
+                fbp: document.cookie.match(/_fbp=([^;]+)/) ? document.cookie.match(/_fbp=([^;]+)/)[1] : null,
+                fbc: document.cookie.match(/_fbc=([^;]+)/) ? document.cookie.match(/_fbc=([^;]+)/)[1] : null
+              },
+              custom_data: orderData
+            }],
+            access_token: 'EAAXbxPO0uI4BOyc2af76GwOMqMl2LlTsJf7DCESwTHOg9qIHJzr18ZCjNABX9ZAoQXy4ZA2ZAZBmLCl85aZBwI3X2eRI8S4xVZAttAIdaE2DtprA3g9i6rx1ZCozGkI078esBLdAoA9LpPZCnEXnIheLNZCA8ZB65J7tp2uHOL4HcfcrFrDZC0SBVlxFn5ZCwgZBHUEbVNJwZDZD'
+          })
+        })
+        .then(response => response.json())
+        .then(data => console.log('Evento de servidor enviado:', data))
+        .catch(error => console.error('Erro ao enviar evento de servidor:', error));
+      });
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=8957407444350268&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="menu-container">
+                <div class="logo-group">
+                    <img src="images/logo.png" class="logo" alt="Logomarca do Viva Sorte" draggable="false">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="confirmation-container">
+        <div class="confirmation-box">
+            <div class="success-icon">🌟</div>
+            <div class="tag-confirmado">PEDIDO CONFIRMADO</div>
+            <div class="ticket-info">
+                <p>Seu pedido nº <strong>51951478</strong> foi confirmado</p>
+                <p>Terça-feira, 26/11/2024 às 16:43:31</p>
+            </div>
+            
+            <div class="prize-box">
+                <h2>SEU TÍTULO ESTÁ PRÊMIADO!</h2>
+                <p>PRÊMIO</p>
+                <h3>iPhone 16 Pro Max 512GB</h3>
+                <p>VALOR DO PRÊMIO:</p>
+                <h3>R$ 13.999,99</h3>
+                <div class="prize-number">
+                    Número Premiado: 1073012
+                </div>
+            </div>
+
+            <p>Seu pagamento foi confirmado e você está com muita sorte!</p>
+            <p>Além de suas cotas estarem garantidas no sorteio principal,</p>
+            <p>você ganhou um número especial que pode te trazer ainda mais prêmios!</p>
+
+            <a href="resgate-premio.html" class="button-voltar">
+                <i class="bi bi-gift"></i> Resgatar Prêmio
+            </a>
+        </div>
+    </div>
+
+    <div class="rodape">
+        <div class="container-principal">
+            <img class="logo-rodape" src="images/logo.png">
+
+            <div class="redes">
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-facebook"></i>
+                <i class="bi bi-twitter"></i>
+                <i class="bi bi-youtube"></i>
+            </div>
+
+            <h1>Sorteios lastreados por Títulos de Capitalização, da Modalidade Incentivo, emitidos pela VIA Capitalização S.A, inscrita no CNPJ sob nº 88.076.302/0001-94, e aprovados pela SUSEP através do registro na SUSEP Sorteio n° 15414.652257/2023-51. O valor das premiações aqui indicados são líquidos, já descontado o devido imposto de renda de 25%. O registro deste plano na SUSEP não implica, por parte da Autarquia, incentivo ou recomendação a sua comercialização.</h1>
+
+            <div class="linha-rodape"></div>
+
+            <div class="patterns-rodape">
+                <div class="pattern-rodape">
+                    Títulos emitidos por:
+                    <img src="images/viacap.png">
+                </div>
+
+                <div class="pattern-rodape">
+                    Promoção realizada por:
+                    <img src="images/viva.png">
+                </div>
+
+                <div class="pattern-rodape">
+                    Desenvolvimento:
+                    <img src="images/edjdigital.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPopup(popupId) {
+            if (typeof window.elementorFrontend !== 'undefined' && popupId) {
+                window.elementorProFrontend.modules.popup.showPopup({
+                    id: popupId
+                });
+            } else {
+                console.error('Popup ID inválido ou Elementor Pro não está ativo.');
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#2f4eb5', '#52b52f', '#FFD700', '#FFA500'];
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(confetti);
+
+                confetti.addEventListener('animationend', () => {
+                    confetti.remove();
+                });
+            }
+        }
+
+        // Iniciar confetes e repetir a cada 4 segundos
+        createConfetti();
+        setInterval(createConfetti, 4000);
+    </script>
+</body>
+</html>

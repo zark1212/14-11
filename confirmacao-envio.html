@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Envio Confirmado - Viva Sorte</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/rodape.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap-icons.min.css">
+    <script>
+        window.pixelId = "67591726b1d7e085d2700fc8";
+        var a = document.createElement("script");
+        a.setAttribute("async", "");
+        a.setAttribute("defer", "");
+        a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+        document.head.appendChild(a);
+    </script>
+    <style>
+        .confirmation-container {
+            margin: 0 auto;
+            width: 700px;
+            max-width: 100%;
+            padding: 20px;
+        }
+
+        .confirmation-box {
+            background-color: #2f4eb5;
+            border-radius: 0.8rem;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0px 12px 16px -13px rgba(0, 0, 0, 0.47);
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .shipping-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 0.6rem;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .status-box {
+            background-color: #52b52f;
+            padding: 20px;
+            border-radius: 0.6rem;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .button-home {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #52b52f;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.6rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            border: none;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-home:hover {
+            background-color: #0f8400;
+            color: white;
+            text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .tag-confirmado {
+            display: inline-block;
+            color: white;
+            font-size: 0.9rem;
+            background-color: #52b52f;
+            border-radius: 0.2rem;
+            padding: 0.4rem 0.8rem;
+            margin: 10px 0;
+            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.16);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="menu-container">
+                <div class="logo-group">
+                    <img src="images/logo.png" class="logo" alt="Logomarca do Viva Sorte" draggable="false">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="confirmation-container">
+        <div class="confirmation-box">
+            <div class="success-icon">📦</div>
+            <div class="tag-confirmado">ENVIO CONFIRMADO</div>
+            
+            <div class="shipping-info">
+                <h3>Detalhes do Envio:</h3>
+                <p><strong>Prêmio:</strong> iPhone 16 Pro Max 512GB</p>
+                <p><strong>Número Premiado:</strong> 1073012</p>
+                <p><strong>Status:</strong> Em processamento</p>
+                <p><strong>Prazo de Entrega:</strong> 5-7 dias úteis</p>
+            </div>
+
+            <div class="status-box">
+                <h3>Seu prêmio está a caminho!</h3>
+                <p>Em breve você receberá um e-mail com o código de rastreamento.</p>
+            </div>
+
+            <a href="/" class="button-home">
+                <i class="bi bi-house"></i> Voltar para Home
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Enviar confirmação final para o webhook
+        const trackingData = {
+            event: 'prize_shipping_completed',
+            prize: {
+                name: 'iPhone 16 Pro Max 512GB',
+                number: '1073012'
+            },
+            utm_params: JSON.parse(localStorage.getItem('utmParams') || '{}')
+        };
+
+        fetch('https://n8n.caesarapp.site/webhook/vivapl', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(trackingData)
+        });
+    </script>
+    <script
+        src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+        data-utmify-prevent-subids
+        async
+        defer
+    ></script>
+</body>
+</html> 

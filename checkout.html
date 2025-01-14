@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Checkout - Viva Sorte</title>
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/checkout.css" rel="stylesheet">
+    <link href="./css/rodape.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/bootstrap-icons.min.css">
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        window.pixelId = "67591726b1d7e085d2700fc8";
+        var a = document.createElement("script");
+        a.setAttribute("async", "");
+        a.setAttribute("defer", "");
+        a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+        document.head.appendChild(a);
+    </script>
+    <script
+        src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+        data-utmify-prevent-subids
+        async
+        defer
+    ></script>
+</head>
+<body>
+    <div class="banner">
+        <div class="container-banner">
+            <img src="./images/logo.png" alt="Logo" class="logo-checkout">
+        </div>
+    </div>
+
+    <div class="container-principal">
+        <div class="checkout-steps">
+            <div class="step active">
+                <i class="bi bi-cart-fill"></i>
+                <span>Carrinho</span>
+            </div>
+            <div class="step">
+                <i class="bi bi-person-fill"></i>
+                <span>Dados</span>
+            </div>
+            <div class="step">
+                <i class="bi bi-cash"></i>
+                <span>PIX</span>
+            </div>
+        </div>
+
+        <div class="checkout-content">
+            <div class="checkout-summary">
+                <h2>Resumo do Pedido</h2>
+                <div class="summary-item">
+                    <span class="item-desc">Quantidade de Cotas</span>
+                    <span class="item-value" id="qtd-cotas">0</span>
+                </div>
+                <div class="summary-item">
+                    <span class="item-desc">Valor por Cota</span>
+                    <span class="item-value">R$ 1,99</span>
+                </div>
+                <div class="summary-total">
+                    <span class="total-desc">Total</span>
+                    <span class="total-value" id="valor-total">R$ 0,00</span>
+                </div>
+
+                <div class="pix-info">
+                    <i class="bi bi-shield-check"></i>
+                    <p>Pagamento processado com segurança</p>
+                </div>
+            </div>
+
+            <div class="checkout-form">
+                <div id="step1" class="checkout-step">
+                    <h2>Dados Pessoais</h2>
+                    <form id="checkout-form">
+                        <div class="form-group">
+                            <label for="nome">Nome Completo</label>
+                            <input type="text" id="nome" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cpf">CPF</label>
+                            <input type="text" id="cpf" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" class="form-control" required>
+                        </div>
+
+                        <button type="button" class="adc-carrinho" onclick="nextStep()">
+                            <i class="bi bi-arrow-right-circle-fill"></i>
+                            Continuar para Pagamento
+                        </button>
+                    </form>
+                </div>
+
+                <div id="step2" class="checkout-step" style="display: none;">
+                    <h2>Pagamento via PIX</h2>
+                    <div class="pix-container">
+                        <div class="qr-code-container">
+                            <h3>QR Code PIX</h3>
+                            <div id="qrcode"></div>
+                        </div>
+
+                        <div class="pix-code-container">
+                            <h3>Código PIX</h3>
+                            <div class="pix-code">
+                                <span id="pix-code-text"></span>
+                                <button class="copy-button" onclick="copyPixCode()">
+                                    <i class="bi bi-clipboard-check"></i>
+                                    Copiar código
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="pix-instructions">
+                            <h3>Como pagar com PIX:</h3>
+                            <ol>
+                                <li>Abra o app do seu banco</li>
+                                <li>Escolha pagar com PIX</li>
+                                <li>Escaneie o QR Code ou cole o código</li>
+                                <li>Confirme as informações e finalize</li>
+                            </ol>
+                        </div>
+
+                        <div class="pix-timer">
+                            <p>Tempo restante para pagamento:</p>
+                            <div id="timer">15:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rodape">
+        <div class="container-principal">
+            <img class="logo-rodape" src="./images/logo.png">
+
+            <div class="redes">
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-facebook"></i>
+                <i class="bi bi-twitter"></i>
+                <i class="bi bi-youtube"></i>
+            </div>
+
+            <h1>Sorteios lastreados por Títulos de Capitalização, da Modalidade Incentivo, emitidos pela VIA Capitalização S.A, inscrita no CNPJ sob nº 88.076.302/0001-94, e aprovados pela SUSEP através do registro na SUSEP Sorteio n° 15414.652257/2023-51. O valor das premiações aqui indicados são líquidos, já descontado o devido imposto de renda de 25%. O registro deste plano na SUSEP não implica, por parte da Autarquia, incentivo ou recomendação a sua comercialização.</h1>
+            
+            <div class="linha-rodape"></div>
+
+            <div class="patterns-rodape">
+                <div class="pattern-rodape">
+                    Títulos emitidos por:
+                    <img src="./images/viacap.png">
+                </div>
+
+                <div class="pattern-rodape">
+                    Promoção realizada por:
+                    <img src="./images/viva.png">
+                </div>
+
+                <div class="pattern-rodape">
+                    Desenvolvimento:
+                    <img src="./images/edjdigital.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/payment.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let transactionId = null;
+            let statusCheckInterval = null;
+            let qrcode = null;
+
+            // Recupera e valida os parâmetros UTM logo no início
+            let utmParams;
+            try {
+                utmParams = JSON.parse(localStorage.getItem('utmParams') || '{}');
+                console.log('UTMs recuperados no checkout:', utmParams); // Debug
+            } catch (error) {
+                console.error('Erro ao recuperar UTMs:', error);
+                utmParams = {};
+            }
+
+            // Recupera a quantidade do localStorage
+            const qtdCotas = localStorage.getItem('ticketQuantity');
+            if (!qtdCotas) {
+                alert('Quantidade de cotas não informada!');
+                window.location.href = '../index.html';
+                return;
+            }
+
+            // Atualiza os valores na tela
+            document.getElementById('qtd-cotas').textContent = qtdCotas;
+            const valorTotal = (qtdCotas * 1.99).toFixed(2);
+            document.getElementById('valor-total').textContent = `R$ ${valorTotal}`;
+
+            // Função para validar CPF
+            function validarCPF(cpf) {
+                const numeroLimpo = cpf.replace(/\D/g, '');
+                if (numeroLimpo.length !== 11) {
+                    return false;
+                }
+                if (/^(\d)\1{10}$/.test(numeroLimpo)) {
+                    return false;
+                }
+                let soma = 0;
+                for (let i = 0; i < 9; i++) {
+                    soma += parseInt(numeroLimpo.charAt(i)) * (10 - i);
+                }
+                let resto = 11 - (soma % 11);
+                let digitoVerificador1 = resto === 10 || resto === 11 ? 0 : resto;
+                if (digitoVerificador1 !== parseInt(numeroLimpo.charAt(9))) {
+                    return false;
+                }
+                soma = 0;
+                for (let i = 0; i < 10; i++) {
+                    soma += parseInt(numeroLimpo.charAt(i)) * (11 - i);
+                }
+                resto = 11 - (soma % 11);
+                let digitoVerificador2 = resto === 10 || resto === 11 ? 0 : resto;
+                return digitoVerificador2 === parseInt(numeroLimpo.charAt(10));
+            }
+
+            // Função para gerar QR Code
+            function generateQRCode(text) {
+                try {
+                    const container = document.getElementById('qrcode');
+                    container.innerHTML = '';
+                    
+                    qrcode = new QRCode(container, {
+                        text: text,
+                        width: 200,
+                        height: 200,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+                } catch (err) {
+                    alert('Erro ao gerar QR code. Por favor, use o código PIX.');
+                }
+            }
+
+            // Função para copiar texto
+            async function copyToClipboard(text) {
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(text);
+                        return true;
+                    } else {
+                        const textArea = document.createElement('textarea');
+                        textArea.value = text;
+                        textArea.style.position = 'fixed';
+                        textArea.style.left = '-999999px';
+                        textArea.style.top = '-999999px';
+                        document.body.appendChild(textArea);
+                        textArea.focus();
+                        textArea.select();
+                        try {
+                            document.execCommand('copy');
+                            textArea.remove();
+                            return true;
+                        } catch (err) {
+                            textArea.remove();
+                            return false;
+                        }
+                    }
+                } catch (err) {
+                    return false;
+                }
+            }
+
+            // Função para ir para o próximo passo
+            window.nextStep = function() {
+                const nome = document.getElementById('nome').value;
+                const email = document.getElementById('email').value;
+                const cpf = document.getElementById('cpf').value;
+                const telefone = document.getElementById('telefone').value;
+
+                // Validações
+                if (!nome || !email || !cpf || !telefone) {
+                    alert('Por favor, preencha todos os campos.');
+                    return;
+                }
+
+                if (!validarCPF(cpf)) {
+                    alert('CPF inválido. Por favor, verifique.');
+                    return;
+                }
+
+                // Desabilita botão e mostra loading
+                const button = document.querySelector('.adc-carrinho');
+                button.disabled = true;
+                button.innerHTML = '<i class="bi bi-hourglass-split"></i> Processando...';
+
+                // Cria a transação PIX com os UTMs
+                PaymentService.createPixTransaction({
+                    amount: parseInt((qtdCotas * 1.99 * 100).toFixed(0)),
+                    customerName: nome,
+                    customerEmail: email,
+                    customerDocument: cpf.replace(/\D/g, ''),
+                    customerPhone: telefone.replace(/\D/g, ''),
+                    quantity: parseInt(qtdCotas),
+                    trackingParams: utmParams // Passa os UTMs recuperados no início
+                })
+                .then(response => {
+                    console.log('Transação criada com UTMs:', utmParams); // Debug
+                    transactionId = response.id;
+                    document.getElementById('pix-code-text').textContent = response.pix.copy_paste;
+                    generateQRCode(response.pix.copy_paste);
+                    
+                    document.getElementById('step1').style.display = 'none';
+                    document.getElementById('step2').style.display = 'block';
+                    
+                    document.querySelector('.step:nth-child(2)').classList.remove('active');
+                    document.querySelector('.step:nth-child(3)').classList.add('active');
+                    
+                    startTimer();
+                    startStatusCheck();
+                })
+                .catch(error => {
+                    console.error('Erro detalhado:', error);
+                    alert('Erro ao gerar pagamento PIX. Por favor, tente novamente.');
+                    button.disabled = false;
+                    button.innerHTML = '<i class="bi bi-arrow-right-circle-fill"></i> Continuar para Pagamento';
+                });
+            };
+
+            // Função para copiar código PIX
+            window.copyPixCode = async function() {
+                const pixCode = document.getElementById('pix-code-text').textContent;
+                const button = document.querySelector('.copy-button');
+                const originalText = button.innerHTML;
+
+                if (await copyToClipboard(pixCode)) {
+                    button.innerHTML = '<i class="bi bi-check-lg"></i> Copiado!';
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                    }, 2000);
+                } else {
+                    alert('Erro ao copiar. Por favor, copie manualmente.');
+                }
+            };
+
+            // Função para iniciar o timer
+            function startTimer() {
+                let timeLeft = 900; // 15 minutos em segundos
+                const timerElement = document.getElementById('timer');
+                const timerInterval = setInterval(() => {
+                    const minutes = Math.floor(timeLeft / 60);
+                    const seconds = timeLeft % 60;
+                    timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    if (timeLeft === 0) {
+                        clearInterval(timerInterval);
+                        alert('Tempo para pagamento expirado. Por favor, gere um novo PIX.');
+                        window.location.reload();
+                    }
+                    timeLeft--;
+                }, 1000);
+            }
+
+            // Função para verificar status
+            function startStatusCheck() {
+                statusCheckInterval = setInterval(async () => {
+                    try {
+                        const status = await PaymentService.checkTransactionStatus(transactionId);
+                        if (status === 'paid') {
+                            clearInterval(statusCheckInterval);
+                            localStorage.removeItem('ticketQuantity');
+                            localStorage.removeItem('utmParams'); // Limpa os parâmetros UTM após o pagamento
+                            alert('Pagamento confirmado! Redirecionando...');
+                            window.location.href = 'success.html';
+                        }
+                    } catch (error) {
+                        console.error('Erro ao verificar status:', error);
+                    }
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html> 
